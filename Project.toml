@@ -1,0 +1,13 @@
+name = "zbar"
+uuid = "ae056753-435e-4d6b-8005-e923ff6e8938"
+authors = ["rex <1073853456@qq.com> and contributors"]
+version = "0.1.0"
+
+[compat]
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
