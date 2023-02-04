@@ -12,9 +12,7 @@ options = load_options(joinpath(@__DIR__, "generator.toml"))
 args = get_default_args()
 push!(args, "-I$include_dir")
 
-# only wrap libclang headers in include/zbar
-# header_dir = joinpath(include_dir, "zbar")
-# headers = [joinpath(header_dir, header) for header in readdir(header_dir) if endswith(header, ".h")]
+# wrap libzbar headers in include/zbar
 headers = [joinpath(include_dir, "zbar.h")]
 
 # create context
