@@ -3,3 +3,6 @@ library_name = "libzbar"
 output_file_path = "./Libzbar.jl"
 module_name = "Libzbar"
 jll_pkg_name = "zbar_jll"
+
+[codegen]
+use_ccall_macro = true
