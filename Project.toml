@@ -9,5 +9,5 @@ zbar_jll = "e2ef1e04-4331-5370-a106-92245136390b"
 
 [compat]
 CEnum = "0.4"
-julia = "1"
+julia = "1.6"
 zbar_jll = "0.23"

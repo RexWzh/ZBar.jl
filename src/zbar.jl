@@ -12,6 +12,7 @@ end
 
 export zbarimg, decodeimg, execute, decodesingle
 
+
 """
     execute(cmd::Cmd)
 
@@ -76,10 +77,12 @@ function decodeimg(file::AbstractString; check::Bool=false)
     res = execute(`$(zbarimg()) --xml $file`)
     res.code != 0 && error("zbarimg failed with code $(res.code): $(res.stderr)")
 
+    # compatible to windows
+    txt = Sys.iswindows() ? replace(res.stdout, "\r\n" => "\n") : res.stdout
     # get the i-th QR-Code(starts from 0)
     reg = Regex("<index num='(?P<num>\\d+)'>\n<symbol type='QR-Code' .*>" *
         "<data><!\\[CDATA\\[(?P<text>[\\s\\S]*?)\\]\\]></data></symbol>\n</index>")
-    mats = collect(eachmatch(reg, res.stdout))
+    mats = collect(eachmatch(reg, txt))
     texts = String[mat["text"] for mat in mats]
 
     # test if the number of QR-Codes is correct
@@ -110,7 +113,8 @@ Decode a barcode image file using `zbarimg` with only one QR-Code.
 function decodesingle(file::AbstractString)
     numofqrcode(file) != 1 && error("The number of QR-Codes is not correct.")
     res = execute(`$(zbarimg()) $file`)
-    return String(match(r"QR-Code:(?P<text>[\s\S]*)\n", res.stdout)["text"])
+    txt = Sys.iswindows() ? replace(res.stdout, "\r\n" => "\n") : res.stdout
+    return String(match(r"QR-Code:(?P<text>[\s\S]*)\n", txt)["text"])
 end
 
 end

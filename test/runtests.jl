@@ -35,6 +35,8 @@ testpath = "testpath"
 
     # blank image
 
+    # QRCode with `\s\n`
+    
     # QRCode with misleading information
 
 
