@@ -9,9 +9,12 @@ zbar_jll = "e2ef1e04-4331-5370-a106-92245136390b"
 
 [compat]
 julia = "1"
+zbar_jll = "0.23"
+CEnum = "0.4"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+QRCoders = "f42e9828-16f3-11ed-2883-9126170b272d"
 
 [targets]
-test = ["Test"]
+test = ["Test", "QRCoders"]
