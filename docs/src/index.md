@@ -1,14 +1,14 @@
 ```@meta
-CurrentModule = zbar
+CurrentModule = ZBar
 ```
 
-# zbar
+# ZBar
 
-Documentation for [zbar](https://github.com/RexWzh/zbar.jl).
+Documentation for [ZBar](https://github.com/RexWzh/ZBar.jl).
 
 ```@index
 ```
 
 ```@autodocs
-Modules = [zbar]
+Modules = [ZBar]
 ```

@@ -1,11 +1,11 @@
-using zbar
+using ZBar
 using Test
 using QRCoders
 
 testpath = "testpath"
 
 
-@testset "zbar.jl -- general test" begin
+@testset "ZBar.jl -- general test" begin
     ### `zbarimg` ###
     println(execute(`$(zbarimg()) --help`).stdout)
     @test true
