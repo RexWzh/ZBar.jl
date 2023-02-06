@@ -1,16 +1,16 @@
-using zbar
+using ZBar
 using Documenter
 
-DocMeta.setdocmeta!(zbar, :DocTestSetup, :(using zbar); recursive=true)
+DocMeta.setdocmeta!(ZBar, :DocTestSetup, :(using ZBar); recursive=true)
 
 makedocs(;
-    modules=[zbar],
+    modules=[ZBar],
     authors="rex <1073853456@qq.com> and contributors",
-    repo="https://github.com/RexWzh/zbar.jl/blob/{commit}{path}#{line}",
-    sitename="zbar.jl",
+    repo="https://github.com/RexWzh/ZBar.jl/blob/{commit}{path}#{line}",
+    sitename="ZBar.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://RexWzh.github.io/zbar.jl",
+        canonical="https://RexWzh.github.io/ZBar.jl",
         assets=String[],
     ),
     pages=[
@@ -19,6 +19,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/RexWzh/zbar.jl",
+    repo="github.com/RexWzh/ZBar.jl",
     devbranch="main",
 )

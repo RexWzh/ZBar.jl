@@ -62,6 +62,6 @@ jobs:
       - run: |
           julia --project=docs -e '
             using Documenter: DocMeta, doctest
-            using zbar
-            DocMeta.setdocmeta!(zbar, :DocTestSetup, :(using zbar); recursive=true)
-            doctest(zbar)'
+            using ZBar
+            DocMeta.setdocmeta!(ZBar, :DocTestSetup, :(using ZBar); recursive=true)
+            doctest(ZBar)'

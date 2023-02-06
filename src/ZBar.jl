@@ -1,4 +1,4 @@
-module zbar
+module ZBar
 
 include("Libzbar.jl")
 
