@@ -7,8 +7,9 @@ testpath = "testpath"
 
 @testset "ZBar.jl -- general test" begin
     ### `zbarimg` ###
-    println(execute(`$(zbarimg()) --help`).stdout)
-    @test true
+    res = execute(`$(zbarimg()) --help`)
+    @test res.code == 0
+    println(res.stdout)
 
     ### `decodeimg` ###
     # normal test for `.png`

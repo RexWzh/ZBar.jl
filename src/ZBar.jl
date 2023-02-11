@@ -1,14 +1,8 @@
 module ZBar
 
-include("Libzbar.jl")
-
-using .Libzbar
+# using .Libzbar
 using zbar_jll
 
-# export symbols from Libzbar
-for sym in filter(s -> startswith("$s", "zbar_"), names(Libzbar, all = true))
-    @eval export $sym
-end
 
 export zbarimg, decodeimg, execute, decodesingle
 
@@ -25,7 +19,7 @@ Ref: https://discourse.julialang.org/t/collecting-all-output-from-shell-commands
 Type
 
 ```julia
-execute(`$(zbarimg()) [options] <image>...`)
+execute(`\$(zbarimg()) [options] <image>...`)
 ```
 
 to get the output of `zbarimg`.
