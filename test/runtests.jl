@@ -4,11 +4,21 @@ using QRCoders
 
 testpath = "testpath"
 
+# image transformation
+## flip
+fliplr(mat) = mat[end:-1:1, :]
+flipud(mat) = mat[:, end:-1:1]
+flipdiag(mat)::BitMatrix = mat';
+
+## rotate
+rot180(mat) = mat[end:-1:1, end:-1:1]
+rot90(mat) = flipud(mat');
+rot270(mat) = fliplr(mat');
 
 @testset "ZBar.jl -- general test" begin
     ### `zbarimg` ###
-    println(execute(`$(zbarimg()) --help`).stdout)
-    @test true
+    res = execute(`$(zbarimg()) --help`)
+    @test res.code == 0
 
     ### `decodeimg` ###
     # normal test for `.png`
@@ -30,8 +40,26 @@ testpath = "testpath"
     @test decodeimg("$testpath/hello12.gif") == fill("hello", 12)
 
     # rotate
-
+    mat = qrcode("hello world")
+    rmat180 = rot180(mat)
+    rmat90 = rot90(mat)
+    rmat270 = rot270(mat)
+    exportbitmat(rmat180, "$testpath/hello180.png")
+    exportbitmat(rmat90, "$testpath/hello90.png")
+    exportbitmat(rmat270, "$testpath/hello270.png")
+    @test decodeimg("$testpath/hello180.png")[1] == "hello world"
+    @test decodeimg("$testpath/hello90.png")[1] == "hello world"
+    @test decodeimg("$testpath/hello270.png")[1] == "hello world"
     # flip
+    fmatlr = fliplr(mat)
+    fmatud = flipud(mat)
+    fmatdiag = flipdiag(mat)
+    exportbitmat(fmatlr, "$testpath/hellofliplr.png")
+    exportbitmat(fmatud, "$testpath/helloflipud.png")
+    exportbitmat(fmatdiag, "$testpath/helloflipdiag.png")
+    @test decodeimg("$testpath/hellofliplr.png")[1] == "hello world"
+    @test decodeimg("$testpath/helloflipud.png")[1] == "hello world"
+    @test decodeimg("$testpath/helloflipdiag.png")[1] == "hello world"
 
     # blank image
 
