@@ -80,8 +80,8 @@ function decodeimg(file::AbstractString; check::Bool=false)
     # compatible to windows
     txt = Sys.iswindows() ? replace(res.stdout, "\r\n" => "\n") : res.stdout
     # get the i-th QR-Code(starts from 0)
-    reg = Regex("<index num='(?P<num>\\d+)'>\n<symbol type='QR-Code' .*>" *
-        "<data><!\\[CDATA\\[(?P<text>[\\s\\S]*?)\\]\\]></data></symbol>\n</index>")
+    reg = Regex("<index num='(?P<num>\\d+)'>\n<symbol type='QR-Code'.*>" *
+        "<data.*><!\\[CDATA\\[(?P<text>[\\s\\S]*?)\\]\\]></data></symbol>\n</index>")
     mats = collect(eachmatch(reg, txt))
     texts = String[mat["text"] for mat in mats]
 
